@@ -1,17 +1,17 @@
-package sockets.chat;
+package sockets.chat.nonblocking;
 
 import java.net.*;
 import java.util.Scanner;
 import java.io.*;
 
-public class ChatClient extends Thread {
+public class ChatClient{
   public static void main(String args[]) {
     Scanner scan = new Scanner(System.in);
     // arguments supply message and hostname of destination
     Socket s = null;
     try {
-      int serverPort = 7896;
-      s = new Socket("localhost", serverPort);
+      int serverPort = Integer.parseInt(args[1]);
+      s = new Socket(args[0], serverPort);
       DataInputStream in = new DataInputStream(s.getInputStream());
       DataOutputStream out = new DataOutputStream(s.getOutputStream());
       while (true) {

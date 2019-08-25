@@ -1,4 +1,4 @@
-package sockets.chat;
+package sockets.chat.nonblocking;
 
 import java.net.*;
 import java.sql.Date;
@@ -9,7 +9,7 @@ import java.io.*;
 public class ChatServer {
   public static void main(String args[]) {
     try {
-      int serverPort = 7896;
+      int serverPort = Integer.parseInt(args[0]);
       ServerSocket listenSocket = new ServerSocket(serverPort);
 
       while (true) {
