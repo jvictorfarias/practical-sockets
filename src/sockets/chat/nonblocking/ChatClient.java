@@ -21,8 +21,7 @@ public class ChatClient{
       }
 
     } catch (UnknownHostException e) {
-      System.out.println("Sock:" + e.getMessage());
-    } catch (EOFException e) {
+      System.out.println("Sock:" + e.getMessage()); } catch (EOFException e) {
       System.out.println("EOF:" + e.getMessage());
     } catch (IOException e) {
       System.out.println("IO:" + e.getMessage());
