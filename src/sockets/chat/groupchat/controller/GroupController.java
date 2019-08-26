@@ -2,7 +2,6 @@ package sockets.chat.groupchat.controller;
 
 import sockets.chat.groupchat.model.Server;
 
-import java.net.*;
 import java.io.InputStream;
 import java.util.Scanner;
 

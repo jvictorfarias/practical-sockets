@@ -18,12 +18,12 @@ public class Client {
     private String host;
     private int porta;
 
-    public Client(String host, int porta) {
+    private Client(String host, int porta) {
         this.host = host;
         this.porta = porta;
     }
 
-    public void executa() throws UnknownHostException, IOException {
+    private void executa() throws IOException {
         Socket cliente = new Socket(this.host, this.porta);
         System.out.println("O cliente se conectou ao servidor!");
 

@@ -5,15 +5,15 @@ import java.util.Scanner;
 
 public class ClientController implements Runnable {
 
-    private InputStream servidor;
+    private InputStream server;
 
-    public ClientController(InputStream servidor) {
-        this.servidor = servidor;
+    public ClientController(InputStream server) {
+        this.server = server;
     }
 
     public void run() {
         // recebe msgs do servidor e imprime na tela
-        Scanner s = new Scanner(this.servidor);
+        Scanner s = new Scanner(this.server);
         while (s.hasNextLine()) {
             System.out.println(s.nextLine());
         }

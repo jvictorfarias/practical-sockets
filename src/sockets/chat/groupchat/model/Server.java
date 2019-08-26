@@ -11,7 +11,6 @@ import java.net.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Server {
 
     public static void main(String[] args) throws IOException {
@@ -22,12 +21,12 @@ public class Server {
     private int porta;
     private List<PrintStream> clients;
 
-    public Server(int porta) {
+    private Server(int porta) {
         this.porta = porta;
-        this.clients = new ArrayList<PrintStream>();
+        this.clients = new ArrayList<>();
     }
 
-    public void executa() throws IOException {
+    private void executa() throws IOException {
         ServerSocket servidor = new ServerSocket(this.porta);
         System.out.println("Porta 12345 aberta!");
 
@@ -49,7 +48,8 @@ public class Server {
         }
     }
 
-    public void distribuiMensagem(String msg, InputStream self_client) {// envia msg para todo mundo
+    /* envia msg para todo mundo*/
+    public void distribuiMensagem(String msg, InputStream self_client) {
         for (PrintStream cliente : this.clients) {
             cliente.println(msg);
         }
