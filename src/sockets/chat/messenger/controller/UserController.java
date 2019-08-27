@@ -15,7 +15,7 @@ public class UserController {
 
     public UserController(String nome, String addr, int port) throws IOException {
         this.user = new User(nome, addr, port);
-        this.socket = new Socket(user.getServerAddr(), user.getServerPort());
+        this.socket = new Socket(user.getServer().getAddr(), user.getServer().getPort());
         this.in = new DataInputStream(socket.getInputStream());
         this.out = new DataOutputStream(socket.getOutputStream());
     }

@@ -4,15 +4,13 @@ import java.io.Serializable;
 
 public class User implements Serializable {
     private String nome;
-    private String serverAddr;
-    private int serverPort;
+    private Server server;
     private long id;
 
 
     public User(String nome, String serverAddr, int serverPort) {
         this.nome = nome;
-        this.serverAddr = serverAddr;
-        this.serverPort = serverPort;
+        server = new Server(serverAddr, serverPort);
         //this.id = id;
     }
 
@@ -32,19 +30,11 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getServerAddr() {
-        return serverAddr;
+    public Server getServer() {
+        return server;
     }
 
-    public void setServerAddr(String serverAddr) {
-        this.serverAddr = serverAddr;
-    }
-
-    public int getServerPort() {
-        return serverPort;
-    }
-
-    public void setServerPort(int serverPort) {
-        this.serverPort = serverPort;
+    public void setServer(Server server) {
+        this.server = server;
     }
 }
