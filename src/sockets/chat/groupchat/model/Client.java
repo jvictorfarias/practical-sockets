@@ -12,7 +12,7 @@ public class Client {
     public static void main(String[] args)
             throws UnknownHostException, IOException {
         // dispara cliente
-        new Client("127.0.0.1", 12345).executa();
+        new Client("127.0.0.1", 3333).executa();
     }
 
     private String host;

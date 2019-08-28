@@ -1,6 +1,6 @@
-package sockets.chat.messenger.controller;
+package sockets.chat.messenger.frontend.controller;
 
-import sockets.chat.messenger.model.User;
+import sockets.chat.messenger.frontend.model.User;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -9,7 +9,7 @@ import java.net.Socket;
 
 public class UserController {
     private User user;
-    private Socket socket;
+    private Socket socket = null;
     private DataInputStream in;
     private DataOutputStream out;
 

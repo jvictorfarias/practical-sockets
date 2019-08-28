@@ -8,13 +8,15 @@ public class TCPClient {
 		// arguments supply message and hostname of destination
 		Socket s = null;
 		try {
-			int serverPort = 7896;
-			s = new Socket(args[1], serverPort);
+			int serverPort = 3333;
+			s = new Socket("127.0.0.1", serverPort);
 			DataInputStream in = new DataInputStream(s.getInputStream());
 			DataOutputStream out = new DataOutputStream(s.getOutputStream());
-			out.writeUTF(args[0]); // UTF is a string encoding see Sn 4.3
+
+			out.writeUTF("oi"); // UTF is a string encoding see Sn 4.3
 			String data = in.readUTF();
 			System.out.println("Received: " + data);
+
 		} catch (UnknownHostException e) {
 			System.out.println("Sock:" + e.getMessage());
 		} catch (EOFException e) {

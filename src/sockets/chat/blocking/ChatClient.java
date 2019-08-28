@@ -17,6 +17,7 @@ public class ChatClient {
         String horaAtual = sdf.format(new Date());
         Scanner input = new Scanner(System.in);
         Socket s = null;
+
         while (true) {
             try {
                 int serverPort = 7890;

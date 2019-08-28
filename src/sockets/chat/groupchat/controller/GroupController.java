@@ -3,7 +3,6 @@ package sockets.chat.groupchat.controller;
 import sockets.chat.groupchat.model.Server;
 
 import java.io.InputStream;
-import java.io.PrintStream;
 import java.util.Scanner;
 
 public class GroupController implements Runnable {
