@@ -9,7 +9,7 @@ public class ServerConnection extends Thread {
     private DataInputStream in;
     private DataOutputStream out;
     private Socket clientSocket;
-    private ArrayList<OutputStream> comms = new ArrayList<>();
+    private ArrayList<DataOutputStream> comms = new ArrayList<>();
 
     public ServerConnection(Socket newClientSocket) {
         try {
@@ -24,22 +24,24 @@ public class ServerConnection extends Thread {
     }
 
     public void run() {
-        while (clientSocket != null) {
+        while (true) {
             try {
                 String data = this.in.readUTF();
                 System.out.println(data);
                 this.out.writeUTF("oi");
+
             } catch (EOFException e) {
                 System.out.println("EOF:" + e.getMessage());
             } catch (IOException e) {
                 System.out.println("IO:" + e.getMessage());
+            } catch (NullPointerException np) {
+                try {
+                    clientSocket.close();
+                } catch (IOException ignored) {
+                }
             }
 
         }
-        try {
-            assert false;
-            clientSocket.close();
-        } catch (IOException ignored) {
-        }
+
     }
 }
