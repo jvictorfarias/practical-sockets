@@ -1,5 +1,6 @@
 package sockets.chat.chatcalc.backend.connection;
 
+import sockets.chat.chatcalc.backend.controller.CalcController;
 import sockets.chat.chatcalc.backend.model.Calculator;
 
 import java.io.DataInputStream;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 public class ServerConnection extends Thread {
     private DataInputStream in;
     private DataOutputStream out;
-    private Calculator c;
+    private CalcController calcController;
     private Socket clientSocket;
     private static ArrayList<DataOutputStream> comms = new ArrayList<>();
 
@@ -21,8 +22,7 @@ public class ServerConnection extends Thread {
             this.clientSocket = newClientSocket;
             this.in = new DataInputStream(clientSocket.getInputStream());
             this.out = new DataOutputStream(clientSocket.getOutputStream());
-            this.c.getInstance();
-            this.comms.add(out);
+            comms.add(out);
             this.start();
         } catch (IOException e) {
             System.out.println("Connection:" + e.getMessage());
@@ -30,28 +30,56 @@ public class ServerConnection extends Thread {
     }
 
     public void run() {
+
         while (true) {
             try {
                 String data = this.in.readUTF();
-                if (data.startsWith("calc:")) {
-                    System.out.println("Resultado da operação: " + this.c.getInstance().calc(data));
-                }
-                System.out.println(data);
-                for (DataOutputStream dos : comms) {
-                    if (!(dos.hashCode() == this.getOut().hashCode())) {
-                        dos.writeUTF(data);
+                if (data.startsWith("$")) {
+                    data = data.replaceAll("$", "");
+                    System.out.println(data);
+                    calcController = new CalcController();
+                    double result = calcController.calcula(data);
+                    System.out.println(data + result);
+                    for (DataOutputStream dos : comms) {
+                        if (!(dos.hashCode() == this.getOut().hashCode())) {
+                            dos.writeUTF(data + "\n" + result);
+                        } else {
+                            dos.writeUTF(String.valueOf(result));
+                        }
+                    }
+                } else {
+                    System.out.println(data);
+                    for (DataOutputStream dos : comms) {
+                        if (!(dos.hashCode() == this.getOut().hashCode())) {
+                            dos.writeUTF(data);
+                        }
                     }
                 }
 
             } catch (EOFException e) {
                 System.out.println("EOF:" + e.getMessage());
-            } catch (IOException e) {
-                System.out.println("IO:" + e.getMessage());
-            } catch (NullPointerException np) {
                 try {
                     clientSocket.close();
-                } catch (IOException ignored) {
+                } catch (IOException io) {
+                    io.printStackTrace();
                 }
+                break;
+            } catch (IOException e) {
+                System.out.println("IO:" + e.getMessage());
+                try {
+                    clientSocket.close();
+                } catch (IOException io) {
+                    io.printStackTrace();
+                }
+                break;
+            } catch (NullPointerException np) {
+                System.out.println("NP:" + np.getMessage());
+                try {
+                    clientSocket.close();
+                } catch (IOException io) {
+                    io.printStackTrace();
+                }
+                break;
             }
 
         }
@@ -88,5 +116,13 @@ public class ServerConnection extends Thread {
 
     public static void setComms(ArrayList<DataOutputStream> comms) {
         ServerConnection.comms = comms;
+    }
+
+    public CalcController getCalcController() {
+        return calcController;
+    }
+
+    public void setCalcController(CalcController calcController) {
+        this.calcController = calcController;
     }
 }

@@ -15,7 +15,7 @@ public class ServerConnection extends Thread {
             this.clientSocket = newClientSocket;
             this.in = new DataInputStream(clientSocket.getInputStream());
             this.out = new DataOutputStream(clientSocket.getOutputStream());
-            this.comms.add(out);
+            comms.add(out);
             this.start();
         } catch (IOException e) {
             System.out.println("Connection:" + e.getMessage());

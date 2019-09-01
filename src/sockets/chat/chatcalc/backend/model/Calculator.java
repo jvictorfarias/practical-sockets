@@ -6,7 +6,6 @@ public class Calculator {
     private static Calculator uniqueInstance;
 
     private Calculator() {
-
     }
 
     public static synchronized Calculator getInstance() {
@@ -17,8 +16,8 @@ public class Calculator {
     }
 
     public double calc(String data) {
-        Double result = 0.0;
-        String[] newData = data.split(" ");
+        double result = 0;
+        String[] newData = data.split("");
         switch (newData[2]) {
             case "+":
                 result = Double.parseDouble(newData[1]) + Double.parseDouble(newData[3]);

@@ -17,6 +17,7 @@ class ChatServer {
         SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
         String horaAtual = sdf.format(new Date());
 
+        //noinspection InfiniteLoopStatement
         while (true) {
             Socket connectionSocket = welcomeSocket.accept();
             DataInputStream in;

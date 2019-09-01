@@ -16,8 +16,9 @@ public class ChatClient {
         SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
         String horaAtual = sdf.format(new Date());
         Scanner input = new Scanner(System.in);
-        Socket s = null;
+        Socket s;
 
+        //noinspection InfiniteLoopStatement
         while (true) {
             try {
                 int serverPort = 7890;

@@ -12,7 +12,7 @@ public class ServerController {
     private ServerSocket listenSocket;
 
     public ServerController(String addr, int port) {
-        server = new Server(addr, port);
+        this.server = new Server(addr, port);
         callServer();
     }
 
