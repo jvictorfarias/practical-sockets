@@ -9,12 +9,12 @@ import java.util.Scanner;
 public class UserConnection extends Thread {
     private UserController user;
 
-    public UserConnection() throws IOException {
-        user = new UserController("Joao", "127.0.0.1", 3333);
+    public UserConnection(String username) throws IOException {
+        user = new UserController(username, "127.0.0.1", 3333);
         Scanner scan = new Scanner(System.in);
         this.start();
         while (scan.hasNextLine()) {
-            user.getOut().writeUTF(scan.nextLine());
+            user.getOut().writeUTF(user.getUser().getNome() + ":" + scan.nextLine());
         }
     }
 

@@ -34,15 +34,17 @@ public class ServerConnection extends Thread {
         while (true) {
             try {
                 String data = this.in.readUTF();
+                String username = data.split(":")[0];
+                data = data.split(":")[1];
                 if (data.startsWith("$")) {
                     data = data.replaceAll("$", "");
                     System.out.println(data);
                     calcController = new CalcController();
                     double result = calcController.calcula(data);
-                    System.out.println(data + result);
+                    System.out.println(username + ":" + data + result);
                     for (DataOutputStream dos : comms) {
                         if (!(dos.hashCode() == this.getOut().hashCode())) {
-                            dos.writeUTF(data + "\n" + result);
+                            dos.writeUTF(username + ":" + data + "\n" + result);
                         } else {
                             dos.writeUTF(String.valueOf(result));
                         }
@@ -51,7 +53,7 @@ public class ServerConnection extends Thread {
                     System.out.println(data);
                     for (DataOutputStream dos : comms) {
                         if (!(dos.hashCode() == this.getOut().hashCode())) {
-                            dos.writeUTF(data);
+                            dos.writeUTF(username + ":" + data);
                         }
                     }
                 }
