@@ -1,7 +1,6 @@
 package sockets.chat.chatcalc.backend.connection;
 
 import sockets.chat.chatcalc.backend.controller.CalcController;
-import sockets.chat.chatcalc.backend.model.Calculator;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -9,6 +8,7 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
+
 
 public class ServerConnection extends Thread {
     private DataInputStream in;
@@ -37,16 +37,16 @@ public class ServerConnection extends Thread {
                 String username = data.split(":")[0];
                 data = data.split(":")[1];
                 if (data.startsWith("$")) {
-                    data = data.replaceAll("$", "");
-                    System.out.println(data);
+                    data = data.replaceAll("\\$", "");
+                    System.out.println("Received: " + data);
                     calcController = new CalcController();
                     double result = calcController.calcula(data);
-                    System.out.println(username + ":" + data + result);
+                    System.out.println(username + ":" + data + "\n" + result);
                     for (DataOutputStream dos : comms) {
                         if (!(dos.hashCode() == this.getOut().hashCode())) {
-                            dos.writeUTF(username + ":" + data + "\n" + result);
+                            dos.writeUTF(username + ":" + data + "\n" + "Server: " + result);
                         } else {
-                            dos.writeUTF(String.valueOf(result));
+                            dos.writeUTF("Server: " + result);
                         }
                     }
                 } else {
