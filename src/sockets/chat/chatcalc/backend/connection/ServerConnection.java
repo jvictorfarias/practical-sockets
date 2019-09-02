@@ -40,7 +40,7 @@ public class ServerConnection extends Thread {
                     data = data.replaceAll("\\$", "");
                     System.out.println("Received: " + data);
                     calcController = new CalcController();
-                    double result = calcController.calcula(data);
+                    String result = calcController.calcula(data);
                     System.out.println(username + ":" + data + "\n" + result);
                     for (DataOutputStream dos : comms) {
                         if (!(dos.hashCode() == this.getOut().hashCode())) {

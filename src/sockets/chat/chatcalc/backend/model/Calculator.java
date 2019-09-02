@@ -15,28 +15,33 @@ public class Calculator {
         return uniqueInstance;
     }
 
-    public double calc(String data) {
+    public String calc(String data) {
         double result = 0;
+        String resultFinal = "";
         String[] newData = data.split(" ");
         switch (newData[1]) {
             case "+":
                 result = Double.parseDouble(newData[0]) + Double.parseDouble(newData[2]);
+                resultFinal = Double.toString(result);
                 break;
             case "-":
                 result = Double.parseDouble(newData[0]) - Double.parseDouble(newData[2]);
+                resultFinal = Double.toString(result);
                 break;
             case "*":
                 result = Double.parseDouble(newData[0]) * Double.parseDouble(newData[2]);
+                resultFinal = Double.toString(result);
                 break;
             case "/":
                 if (newData[2].equals("0")) {
-                    System.out.println("Impossível dividir por 0!");
+                    resultFinal = "Impossível dividir por 0!";
                 } else {
                     result = Double.parseDouble(newData[0]) / Double.parseDouble(newData[2]);
+                    resultFinal = Double.toString(result);
                 }
                 break;
         }
-        return result;
+        return resultFinal;
     }
 
 }

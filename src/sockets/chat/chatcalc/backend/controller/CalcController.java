@@ -9,7 +9,7 @@ public class CalcController {
         calculator = Calculator.getInstance();
     }
 
-    public synchronized double calcula(String request) {
+    public synchronized String calcula(String request) {
         return this.getCalculator().calc(request);
     }
 
