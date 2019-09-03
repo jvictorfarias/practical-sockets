@@ -40,20 +40,35 @@ public class ServerConnection extends Thread {
                     data = data.replaceAll("\\$", "");
                     System.out.println("Received: " + data);
                     calcController = new CalcController();
-                    String result = calcController.calcula(data);
-                    System.out.println(username + ":" + data + "\n" + result);
-                    for (DataOutputStream dos : comms) {
-                        if (!(dos.hashCode() == this.getOut().hashCode())) {
-                            dos.writeUTF(username + ":" + data + "\n" + "Server: " + result);
-                        } else {
-                            dos.writeUTF("Server: " + result);
+                    double result = calcController.calcula(data);
+                    boolean divZero = false;
+                    if (result == Double.POSITIVE_INFINITY) {
+                        divZero = true;
+                    }
+                    if (divZero == true) {
+                        System.out.println(username + ": " + data + "\nImpossível dividir por 0!");
+                        for (DataOutputStream dos : comms) {
+                            if (!(dos.hashCode() == this.getOut().hashCode())) {
+                                dos.writeUTF(username + ": " + data + "\n" + "Server: Impossível dividir por 0!");
+                            } else {
+                                dos.writeUTF("Server: Impossível dividir por 0!");
+                            }
+                        }
+                    } else {
+                        System.out.println(username + ": " + data + "\n" + result);
+                        for (DataOutputStream dos : comms) {
+                            if (!(dos.hashCode() == this.getOut().hashCode())) {
+                                dos.writeUTF(username + ": " + data + "\n" + "Server: " + result);
+                            } else {
+                                dos.writeUTF("Server: " + result);
+                            }
                         }
                     }
                 } else {
                     System.out.println(data);
                     for (DataOutputStream dos : comms) {
                         if (!(dos.hashCode() == this.getOut().hashCode())) {
-                            dos.writeUTF(username + ":" + data);
+                            dos.writeUTF(username + ": " + data);
                         }
                     }
                 }

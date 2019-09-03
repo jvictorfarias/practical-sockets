@@ -9,8 +9,12 @@ public class CalcController {
         calculator = Calculator.getInstance();
     }
 
-    public synchronized String calcula(String request) {
-        return this.getCalculator().calc(request);
+    public synchronized double calcula(String request) {
+        String[] newData = request.split(" ");
+        double operando1 = Double.parseDouble(newData[0]);
+        String operador = newData[1];
+        double operando2 = Double.parseDouble(newData[2]);
+        return this.getCalculator().calc(operando1, operador, operando2);
     }
 
     private Calculator getCalculator() {
