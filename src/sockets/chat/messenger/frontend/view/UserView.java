@@ -1,6 +1,6 @@
-package sockets.chat.nonblocking.frontend.view;
+package sockets.chat.messenger.frontend.view;
 
-import sockets.chat.nonblocking.frontend.connection.UserConnection;
+import sockets.chat.messenger.frontend.connection.UserConnection;
 
 import java.io.IOException;
 

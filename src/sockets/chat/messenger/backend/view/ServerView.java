@@ -1,6 +1,6 @@
-package sockets.chat.nonblocking.backend.view;
+package sockets.chat.messenger.backend.view;
 
-import sockets.chat.nonblocking.backend.controller.ServerController;
+import sockets.chat.messenger.backend.controller.ServerController;
 
 
 import java.io.IOException;

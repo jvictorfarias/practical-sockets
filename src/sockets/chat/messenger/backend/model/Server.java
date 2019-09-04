@@ -1,4 +1,4 @@
-package sockets.chat.nonblocking.backend.model;
+package sockets.chat.messenger.backend.model;
 
 import java.io.Serializable;
 

@@ -1,6 +1,6 @@
-package sockets.chat.nonblocking.frontend.model;
+package sockets.chat.messenger.frontend.model;
 
-import sockets.chat.nonblocking.backend.model.Server;
+import sockets.chat.messenger.backend.model.Server;
 
 public class User {
     private String nome;

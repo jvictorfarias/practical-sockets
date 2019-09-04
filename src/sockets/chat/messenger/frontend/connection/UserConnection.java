@@ -1,6 +1,6 @@
-package sockets.chat.nonblocking.frontend.connection;
+package sockets.chat.messenger.frontend.connection;
 
-import sockets.chat.nonblocking.frontend.controller.UserController;
+import sockets.chat.messenger.frontend.controller.UserController;
 
 import java.io.IOException;
 import java.util.Scanner;

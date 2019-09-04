@@ -1,6 +1,6 @@
-package sockets.chat.nonblocking.frontend.controller;
+package sockets.chat.messenger.frontend.controller;
 
-import sockets.chat.nonblocking.frontend.model.User;
+import sockets.chat.messenger.frontend.model.User;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

@@ -1,8 +1,8 @@
-package sockets.chat.nonblocking.backend.controller;
+package sockets.chat.messenger.backend.controller;
 
 
-import sockets.chat.nonblocking.backend.connection.ServerConnection;
-import sockets.chat.nonblocking.backend.model.Server;
+import sockets.chat.messenger.backend.connection.ServerConnection;
+import sockets.chat.messenger.backend.model.Server;
 
 import java.io.IOException;
 import java.net.ServerSocket;

@@ -1,4 +1,4 @@
-package sockets.chat.nonblocking.backend.connection;
+package sockets.chat.messenger.backend.connection;
 
 import java.io.*;
 import java.net.Socket;
