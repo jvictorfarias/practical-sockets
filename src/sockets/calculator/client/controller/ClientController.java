@@ -11,10 +11,10 @@ public class ClientController {
     private ClientConnection connection;
     private Socket clientSocket;
 
-    public ClientController(String addr, int port) throws IOException {
+    public ClientController(String addr, int port, String request) throws IOException {
         this.client = new ClientModel(addr, port);
         this.clientSocket = new Socket(this.client.getServer().getAddr(), this.client.getServer().getPort());
-        this.connection = new ClientConnection(clientSocket);
+        this.connection = new ClientConnection(clientSocket, request);
     }
 
     public ClientModel getClient() {

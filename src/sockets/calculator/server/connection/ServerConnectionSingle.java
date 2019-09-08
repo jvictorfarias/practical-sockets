@@ -26,11 +26,15 @@ public class ServerConnectionSingle {
 
         while (true) {
             try {
-                sendResponse(String.valueOf(calculator.calcula(getRequest())));
+                Thread.sleep(500);
+                String request = getRequest();
+                sendResponse(String.valueOf(calculator.calcula(request)) + request.split(";")[3]);
             } catch (EOFException e) {
                 System.out.println("EOF:" + e.getMessage());
             } catch (IOException e) {
                 System.out.println("IO:" + e.getMessage());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             } finally {
                 try {
                     clientSocket.close();

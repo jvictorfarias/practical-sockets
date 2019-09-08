@@ -11,11 +11,13 @@ public class ClientConnection extends Thread {
     private DataInputStream in;
     private DataOutputStream out;
     private Socket client;
+    private String request;
 
-    public ClientConnection(Socket client) throws IOException {
+    public ClientConnection(Socket client, String request) throws IOException {
         this.client = client;
         this.in = new DataInputStream(this.client.getInputStream());
         this.out = new DataOutputStream(this.client.getOutputStream());
+        this.request = request;
         this.start();
     }
 
@@ -33,7 +35,7 @@ public class ClientConnection extends Thread {
 
     public void run() {
         try {
-            this.sendRequest("ADD;10;11");
+            this.sendRequest(this.request);
             System.out.println(this.getResponse());
             this.close();
         } catch (IOException e) {

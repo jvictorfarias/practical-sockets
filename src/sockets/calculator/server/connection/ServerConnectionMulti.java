@@ -36,24 +36,20 @@ public class ServerConnectionMulti extends Thread {
         return this.in.readUTF();
     }
 
-    /*
-    private synchronized void counter() throws InterruptedException {
-        if(count
-                wait();
-        counter++;
-        notify();
-    }
 
-    */
     public void run() {
 
         while (true) {
             try {
-                sendResponse(String.valueOf(calculator.calcula(getRequest())) + String.valueOf(counter));
+                Thread.sleep(500);
+                String request = getRequest();
+                sendResponse(String.valueOf(calculator.calcula(request)) + request.split(";")[3]);
             } catch (EOFException e) {
                 System.out.println("EOF:" + e.getMessage());
             } catch (IOException e) {
                 System.out.println("IO:" + e.getMessage());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             } finally {
                 try {
                     clientSocket.close();
