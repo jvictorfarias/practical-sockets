@@ -10,11 +10,20 @@ public class CalcController {
     }
 
     public synchronized double calcula(String request) {
-        String[] newData = request.split(" ");
-        double operando1 = Double.parseDouble(newData[0]);
-        String operador = newData[1];
-        double operando2 = Double.parseDouble(newData[2]);
-        return this.getCalculator().calc(operando1, operador, operando2);
+        String[] newData = request.split(";");
+        Double op1 = Double.parseDouble(newData[1]);
+        Double op2 = Double.parseDouble(newData[2]);
+        switch (newData[0]) {
+            case "ADD":
+                return this.getCalculator().add(op1, op2);
+            case "SUB":
+                return this.getCalculator().sub(op1, op2);
+            case "MULT":
+                return this.getCalculator().mult(op1, op2);
+            case "DIV":
+                return this.getCalculator().div(op1, op2);
+        }
+        return 0;
     }
 
     private CalculatorModel getCalculator() {

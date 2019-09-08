@@ -2,7 +2,7 @@ package sockets.chat.chatcalc.backend.controller;
 
 import sockets.chat.chatcalc.backend.model.Calculator;
 
-public class CalcController {
+public class CalcController { 
     private Calculator calculator;
 
     public CalcController() {

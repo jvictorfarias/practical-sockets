@@ -15,23 +15,23 @@ public class CalculatorModel {
         return uniqueInstance;
     }
 
-    public double calc(Double operando1, String operador, Double operando2) {
-        double result = 0.0f;
-        switch (operador) {
-            case "+":
-                result = operando1 + operando2;
-                break;
-            case "-":
-                result = operando1 - operando2;
-                break;
-            case "*":
-                result = operando1 * operando2;
-                break;
-            case "/":
-                result = operando1 / operando2;
-                break;
-        }
+    public double add(Double operando1, Double operando2) {
+        double result = operando1 + operando2;
         return result;
     }
 
+    public double sub(Double operando1, Double operando2) {
+        double result = operando1 - operando2;
+        return result;
+    }
+
+    public double mult(Double operando1, Double operando2) {
+        double result = operando1 * operando2;
+        return result;
+    }
+
+    public double div(Double operando1, Double operando2) {
+        double result = operando1 / operando2;
+        return result;
+    }
 }
