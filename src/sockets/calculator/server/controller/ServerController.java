@@ -1,7 +1,7 @@
 package sockets.calculator.server.controller;
 
 
-import sockets.calculator.server.connection.ServerConnection;
+import sockets.calculator.server.connection.ServerConnectionMulti;
 import sockets.calculator.server.model.ServerModel;
 
 import java.io.IOException;
@@ -21,7 +21,7 @@ public class ServerController {
             this.setListenSocket(new ServerSocket(this.getServer().getPort()));
             //noinspection InfiniteLoopStatement
             while (true) {
-                new ServerConnection(this.getListenSocket().accept());
+                new ServerConnectionMulti(this.getListenSocket().accept());
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());

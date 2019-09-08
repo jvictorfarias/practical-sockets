@@ -9,13 +9,14 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.net.Socket;
 
-public class ServerConnection extends Thread {
+public class ServerConnectionMulti extends Thread {
+    private static int counter = 0;
     private DataInputStream in;
     private DataOutputStream out;
     private Socket clientSocket;
     private CalcController calculator;
 
-    public ServerConnection(Socket newClientSocket) {
+    public ServerConnectionMulti(Socket newClientSocket) {
         try {
             this.clientSocket = newClientSocket;
             this.calculator = new CalcController();
@@ -35,19 +36,28 @@ public class ServerConnection extends Thread {
         return this.in.readUTF();
     }
 
+    /*
+    private synchronized void counter() throws InterruptedException {
+        if(count
+                wait();
+        counter++;
+        notify();
+    }
+
+    */
     public void run() {
 
-        //noinspection InfiniteLoopStatement
         while (true) {
             try {
-                sendResponse(String.valueOf(calculator.calcula(getRequest())));
+                sendResponse(String.valueOf(calculator.calcula(getRequest())) + String.valueOf(counter));
             } catch (EOFException e) {
                 System.out.println("EOF:" + e.getMessage());
             } catch (IOException e) {
                 System.out.println("IO:" + e.getMessage());
-            } catch (NullPointerException np) {
+            } finally {
                 try {
                     clientSocket.close();
+                    break;
                 } catch (IOException ignored) {
                 }
             }
