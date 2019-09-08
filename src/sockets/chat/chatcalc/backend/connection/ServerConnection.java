@@ -34,7 +34,7 @@ public class ServerConnection extends Thread {
         while (true) {
             try {
                 String data = this.in.readUTF();
-                String username = data.split(":")[0];
+                String username = data.split(";")[0];
                 data = data.split(":")[1];
                 if (data.startsWith("$")) {
                     data = data.replaceAll("\\$", "");

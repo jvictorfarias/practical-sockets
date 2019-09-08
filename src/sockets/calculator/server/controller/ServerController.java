@@ -1,8 +1,8 @@
 package sockets.calculator.server.controller;
 
 
-import sockets.chat.chatcalc.backend.connection.ServerConnection;
-import sockets.chat.chatcalc.backend.model.ServerModel;
+import sockets.calculator.server.connection.ServerConnection;
+import sockets.calculator.server.model.ServerModel;
 
 import java.io.IOException;
 import java.net.ServerSocket;
