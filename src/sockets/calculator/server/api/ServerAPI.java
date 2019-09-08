@@ -1,9 +1,9 @@
 package sockets.calculator.server.api;
 
-import sockets.calculator.server.controller.ServerController;
+import sockets.calculator.server.controller.ServerControllerMulti;
 
 public class ServerAPI {
     public static void main(String[] args) {
-        ServerController serverC = new ServerController("127.0.0.1", 3333);
+        ServerControllerMulti serverC = new ServerControllerMulti("127.0.0.1", 3333);
     }
 }

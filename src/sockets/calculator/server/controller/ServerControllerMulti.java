@@ -7,11 +7,11 @@ import sockets.calculator.server.model.ServerModel;
 import java.io.IOException;
 import java.net.ServerSocket;
 
-public class ServerController {
+public class ServerControllerMulti {
     private ServerModel server;
     private ServerSocket listenSocket;
 
-    public ServerController(String addr, int port) {
+    public ServerControllerMulti(String addr, int port) {
         this.server = new ServerModel(addr, port);
         callServer();
     }
