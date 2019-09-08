@@ -27,7 +27,7 @@ public class ClientConnection extends Thread {
         return this.getIn().readUTF();
     }
 
-    public void close() throws IOException {
+    private void close() throws IOException {
         this.getClient().close();
     }
 
@@ -58,7 +58,7 @@ public class ClientConnection extends Thread {
         this.out = out;
     }
 
-    public Socket getClient() {
+    private Socket getClient() {
         return client;
     }
 
