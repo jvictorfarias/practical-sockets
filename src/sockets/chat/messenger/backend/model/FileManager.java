@@ -4,24 +4,33 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class FileManager implements Serializable {
-    private byte[] content;
-    private transient long length;
-    private transient Date dataHoraUpload;
+    private String nome;
+    private byte[] conteudo;
+    private String diretorioDestino;
+    private Date dataHoraUpload;
 
-    public byte[] getContent() {
-        return content;
+    public String getNome() {
+        return nome;
     }
 
-    public void setContent(byte[] content) {
-        this.content = content;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public long getLength() {
-        return length;
+    public byte[] getConteudo() {
+        return conteudo;
     }
 
-    public void setLength(long length) {
-        this.length = length;
+    public void setConteudo(byte[] conteudo) {
+        this.conteudo = conteudo;
+    }
+
+    public String getDiretorioDestino() {
+        return diretorioDestino;
+    }
+
+    public void setDiretorioDestino(String diretorioDestino) {
+        this.diretorioDestino = diretorioDestino;
     }
 
     public Date getDataHoraUpload() {
