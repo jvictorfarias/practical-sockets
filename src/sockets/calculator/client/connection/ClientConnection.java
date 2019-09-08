@@ -26,7 +26,12 @@ public class ClientConnection extends Thread {
         return this.getIn().readUTF();
     }
 
+    public void close() throws IOException {
+        this.getClient().close();
+    }
+
     public void run() {
+
     }
 
     public DataInputStream getIn() {
