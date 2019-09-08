@@ -2,11 +2,11 @@ package sockets.chat.chatcalc.backend.model;
 
 import java.io.Serializable;
 
-public class Server implements Serializable {
+public class ServerModel implements Serializable {
     private String addr;
     private int port;
 
-    public Server(String addr, int port) {
+    public ServerModel(String addr, int port) {
         this.addr = addr;
         this.port = port;
     }

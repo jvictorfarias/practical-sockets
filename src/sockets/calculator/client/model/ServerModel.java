@@ -1,12 +1,10 @@
-package sockets.chat.messenger.backend.model;
+package sockets.calculator.client.model;
 
-import java.io.Serializable;
-
-public class Server {
+public class ServerModel {
     private String addr;
     private int port;
 
-    public Server(String addr, int port) {
+    ServerModel(String addr, int port) {
         this.addr = addr;
         this.port = port;
     }

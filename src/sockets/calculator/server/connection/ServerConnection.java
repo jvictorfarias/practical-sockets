@@ -1,6 +1,11 @@
-package sockets.chat.messenger.backend.connection;
+package sockets.calculator.server.connection;
 
-import java.io.*;
+import sockets.chat.chatcalc.backend.controller.CalcController;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.EOFException;
+import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 
@@ -8,32 +13,34 @@ public class ServerConnection extends Thread {
     private DataInputStream in;
     private DataOutputStream out;
     private Socket clientSocket;
-    private static ArrayList<DataOutputStream> comms = new ArrayList<>();
+    private CalcController calculator;
 
     public ServerConnection(Socket newClientSocket) {
         try {
             this.clientSocket = newClientSocket;
+            this.calculator = new CalcController();
             this.in = new DataInputStream(clientSocket.getInputStream());
             this.out = new DataOutputStream(clientSocket.getOutputStream());
-            comms.add(out);
             this.start();
         } catch (IOException e) {
             System.out.println("Connection:" + e.getMessage());
         }
     }
 
+    private void sendResponse(String request) throws IOException {
+        this.out.writeUTF(request);
+    }
+
+    private String getRequest() throws IOException {
+        return this.in.readUTF();
+    }
+
     public void run() {
 
+        //noinspection InfiniteLoopStatement
         while (true) {
             try {
-                String data = this.in.readUTF();
-                System.out.println(data);
-                for (DataOutputStream dos : comms) {
-                    if (!(dos.hashCode() == this.getOut().hashCode())) {
-                        dos.writeUTF(data);
-                    }
-                }
-
+                sendResponse(String.valueOf(calculator.calcula(getRequest())));
             } catch (EOFException e) {
                 System.out.println("EOF:" + e.getMessage());
             } catch (IOException e) {
@@ -73,11 +80,4 @@ public class ServerConnection extends Thread {
         this.clientSocket = clientSocket;
     }
 
-    public static ArrayList<DataOutputStream> getComms() {
-        return comms;
-    }
-
-    public static void setComms(ArrayList<DataOutputStream> comms) {
-        ServerConnection.comms = comms;
-    }
 }

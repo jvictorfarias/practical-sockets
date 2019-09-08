@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 class ChatServer {
 
-    public static void main(String[] argv) throws Exception {
+    public static void main(String[] args) throws Exception {
         String clientMsg;
         ServerSocket welcomeSocket = new ServerSocket(7890);
         Scanner input = new Scanner(System.in);

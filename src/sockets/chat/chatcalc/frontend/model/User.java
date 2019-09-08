@@ -1,15 +1,15 @@
 package sockets.chat.chatcalc.frontend.model;
 
-import sockets.chat.chatcalc.backend.model.Server;
+import sockets.chat.chatcalc.backend.model.ServerModel;
 
 public class User {
     private String nome;
-    private Server server;
+    private ServerModel server;
 
 
     public User(String nome, String serverAddr, int serverPort) {
         this.nome = nome;
-        server = new Server(serverAddr, serverPort);
+        server = new ServerModel(serverAddr, serverPort);
     }
 
     public String getNome() {
@@ -20,11 +20,11 @@ public class User {
         this.nome = nome;
     }
 
-    public Server getServer() {
+    public ServerModel getServer() {
         return server;
     }
 
-    public void setServer(Server server) {
+    public void setServer(ServerModel server) {
         this.server = server;
     }
 }

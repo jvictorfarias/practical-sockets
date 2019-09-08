@@ -1,4 +1,4 @@
-package sockets.chat.chatcalc.backend.controller;
+package sockets.calculator.server.controller;
 
 
 import sockets.chat.chatcalc.backend.connection.ServerConnection;
