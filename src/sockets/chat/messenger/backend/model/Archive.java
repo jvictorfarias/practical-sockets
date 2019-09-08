@@ -3,7 +3,7 @@ package sockets.chat.messenger.backend.model;
 import java.io.Serializable;
 import java.util.Date;
 
-public class FileManager implements Serializable {
+public class Archive implements Serializable {
     private String nome;
     private byte[] conteudo;
     private String diretorioDestino;
