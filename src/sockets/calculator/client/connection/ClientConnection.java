@@ -16,13 +16,14 @@ public class ClientConnection extends Thread {
         this.client = client;
         this.in = new DataInputStream(this.client.getInputStream());
         this.out = new DataOutputStream(this.client.getOutputStream());
+        this.start();
     }
 
-    public void sendRequest(String request) throws IOException {
+    private void sendRequest(String request) throws IOException {
         this.getOut().writeUTF(request);
     }
 
-    public String getResponse() throws IOException {
+    private String getResponse() throws IOException {
         return this.getIn().readUTF();
     }
 
@@ -31,6 +32,13 @@ public class ClientConnection extends Thread {
     }
 
     public void run() {
+        try {
+            this.sendRequest("ADD;10;11");
+            System.out.println(this.getResponse());
+            this.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
