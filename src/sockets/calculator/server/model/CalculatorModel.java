@@ -16,22 +16,18 @@ public class CalculatorModel {
     }
 
     public double add(Double operando1, Double operando2) {
-        double result = operando1 + operando2;
-        return result;
+        return operando1 + operando2;
     }
 
     public double sub(Double operando1, Double operando2) {
-        double result = operando1 - operando2;
-        return result;
+        return operando1 - operando2;
     }
 
     public double mult(Double operando1, Double operando2) {
-        double result = operando1 * operando2;
-        return result;
+        return operando1 * operando2;
     }
 
     public double div(Double operando1, Double operando2) {
-        double result = operando1 / operando2;
-        return result;
+        return operando1 / operando2;
     }
 }

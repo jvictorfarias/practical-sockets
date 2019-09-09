@@ -1,7 +1,5 @@
 package sockets.calculator.client.connection;
 
-import sockets.calculator.client.controller.ClientController;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;

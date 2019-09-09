@@ -22,6 +22,6 @@ public class ClientView {
 
         long endTime = new Date().getTime();
         long timeElapsed = endTime - startTime;
-        System.out.println("Execution had a duration of " + timeElapsed);
+        System.out.println("Execution had a duration of " + (timeElapsed / 1000.0) + " seconds");
     }
 }

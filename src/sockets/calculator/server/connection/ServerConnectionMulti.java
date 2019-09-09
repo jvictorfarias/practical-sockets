@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.net.Socket;
 
 public class ServerConnectionMulti extends Thread {
-    private static int counter = 0;
     private DataInputStream in;
     private DataOutputStream out;
     private Socket clientSocket;
@@ -43,7 +42,7 @@ public class ServerConnectionMulti extends Thread {
             try {
                 Thread.sleep(500);
                 String request = getRequest();
-                sendResponse(String.valueOf(calculator.calcula(request)) + request.split(";")[3]);
+                sendResponse(calculator.calcula(request) + request.split(";")[3]);
             } catch (EOFException e) {
                 System.out.println("EOF:" + e.getMessage());
             } catch (IOException e) {
@@ -54,7 +53,8 @@ public class ServerConnectionMulti extends Thread {
                 try {
                     clientSocket.close();
                     break;
-                } catch (IOException ignored) {
+                } catch (IOException e) {
+                    System.out.println("IO:" + e.getMessage());
                 }
             }
 

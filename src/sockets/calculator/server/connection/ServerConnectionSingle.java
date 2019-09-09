@@ -28,7 +28,7 @@ public class ServerConnectionSingle {
             try {
                 Thread.sleep(500);
                 String request = getRequest();
-                sendResponse(String.valueOf(calculator.calcula(request)) + request.split(";")[3]);
+                sendResponse(calculator.calcula(request) + request.split(";")[3]);
             } catch (EOFException e) {
                 System.out.println("EOF:" + e.getMessage());
             } catch (IOException e) {
